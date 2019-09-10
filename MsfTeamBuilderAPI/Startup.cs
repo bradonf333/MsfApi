@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -5,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace MsfTeamBuilderAPI
 {
@@ -20,7 +22,18 @@ namespace MsfTeamBuilderAPI
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
+      services.AddCors();
+      //services.AddAutoMapper();
       services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+      // Register the Swagger generator, defining 1 or more Swagger documents
+      services.AddSwaggerGen(c =>
+      {
+        c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+      });
+
+      // configure strongly typed settings objects
+      var appSettingsSection = Configuration.GetSection("AppSettings");
 
       // In production, the Angular files will be served from this directory
       services.AddSpaStaticFiles(configuration =>
