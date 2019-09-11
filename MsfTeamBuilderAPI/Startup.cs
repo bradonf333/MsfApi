@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MsfTeamBuilderAPI.Helpers;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace MsfTeamBuilderAPI
@@ -28,7 +29,13 @@ namespace MsfTeamBuilderAPI
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddCors();
-      //services.AddAutoMapper();
+      // Auto Mapper Configurations
+      var mappingConfig = new MapperConfiguration(mc =>
+      {
+        mc.AddProfile(new AutoMapperProfile());
+      });
+      IMapper mapper = mappingConfig.CreateMapper();
+      services.AddSingleton(mapper);
       services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
       // Register the Swagger generator, defining 1 or more Swagger documents
