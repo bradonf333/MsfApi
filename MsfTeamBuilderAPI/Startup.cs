@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MsfTeamBuilderAPI.Helpers;
+using MsfTeamBuilderAPI.Models;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace MsfTeamBuilderAPI
@@ -46,6 +47,7 @@ namespace MsfTeamBuilderAPI
 
       // configure strongly typed settings objects
       var appSettingsSection = Configuration.GetSection("AppSettings");
+      services.Configure<AppSettings>(appSettingsSection);
 
       // In production, the Angular files will be served from this directory
       services.AddSpaStaticFiles(configuration =>
