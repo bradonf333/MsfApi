@@ -8,6 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MsfTeamBuilderAPI.Helpers;
 using MsfTeamBuilderAPI.Models;
+using MsfTeamBuilderAPI.Models.Entities;
+using MsfTeamBuilderAPI.Services;
+using MsfTeamBuilderAPI.Services.DataBase;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace MsfTeamBuilderAPI
@@ -37,6 +40,7 @@ namespace MsfTeamBuilderAPI
       });
       IMapper mapper = mappingConfig.CreateMapper();
       services.AddSingleton(mapper);
+      services.AddTransient<IRepository<Toon>, SqlLiteDb>();
       services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
       // Register the Swagger generator, defining 1 or more Swagger documents

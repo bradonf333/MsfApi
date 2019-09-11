@@ -6,10 +6,11 @@ using System.Data.SQLite;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using MsfTeamBuilderAPI.Models;
+using MsfTeamBuilderAPI.Models.Entities;
 
 namespace MsfTeamBuilderAPI.Services.DataBase
 {
-  public class SqlLiteDb
+  public class SqlLiteDb : IRepository<Toon>
   {
     private readonly IOptions<AppSettings> _config;
 
@@ -17,7 +18,29 @@ namespace MsfTeamBuilderAPI.Services.DataBase
     {
       _config = config;
       var db = _config.Value.Database;
-      SQLiteConnection.CreateFile("MyDatabase.sqlite");
+      SQLiteConnection.CreateFile($"{db}.sqlite");
+    }
+
+    public IEnumerable<Toon> List { get; }
+
+    public void Add(Toon entity)
+    {
+      throw new NotImplementedException();
+    }
+
+    public void Delete(Toon entity)
+    {
+      throw new NotImplementedException();
+    }
+
+    public void Update(Toon entity)
+    {
+      throw new NotImplementedException();
+    }
+
+    public Toon FindById(int id)
+    {
+      throw new NotImplementedException();
     }
   }
 }

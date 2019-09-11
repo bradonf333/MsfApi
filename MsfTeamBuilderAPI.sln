@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29230.47
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MsfTeamBuilderAPI", "MsfTeamBuilderAPI\MsfTeamBuilderAPI.csproj", "{0FD09C79-B01B-41C7-948C-3C29E64C2EA3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MsfTeamBuilderAPI", "MsfTeamBuilderAPI\MsfTeamBuilderAPI.csproj", "{0FD09C79-B01B-41C7-948C-3C29E64C2EA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{EADA20D3-5E8B-4542-8533-D162725A7307}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{0FD09C79-B01B-41C7-948C-3C29E64C2EA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FD09C79-B01B-41C7-948C-3C29E64C2EA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FD09C79-B01B-41C7-948C-3C29E64C2EA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EADA20D3-5E8B-4542-8533-D162725A7307}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EADA20D3-5E8B-4542-8533-D162725A7307}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EADA20D3-5E8B-4542-8533-D162725A7307}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EADA20D3-5E8B-4542-8533-D162725A7307}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
