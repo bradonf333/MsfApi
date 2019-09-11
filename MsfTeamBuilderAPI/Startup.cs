@@ -12,9 +12,14 @@ namespace MsfTeamBuilderAPI
 {
   public class Startup
   {
-    public Startup(IConfiguration configuration)
+    public Startup(IHostingEnvironment env)
     {
-      Configuration = configuration;
+      var builder = new ConfigurationBuilder()
+                    .SetBasePath(env.ContentRootPath)
+                    .AddJsonFile("appsettings.json")
+                    .AddJsonFile($"appsettings.{env.EnvironmentName}.json")
+                    .AddEnvironmentVariables();
+      Configuration = builder.Build();
     }
 
     public IConfiguration Configuration { get; }
