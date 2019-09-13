@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Data.SQLite;
-using System.Text;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using MsfTeamBuilderAPI.Models;
 using MsfTeamBuilderAPI.Models.Entities;
+using MsfTeamBuilderAPI.Services.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Data.SQLite;
+using MsfTeamBuilderAPI.Models.BaseToons;
 
 namespace MsfTeamBuilderAPI.Services.DataBase
 {
@@ -17,18 +15,7 @@ namespace MsfTeamBuilderAPI.Services.DataBase
 
     public SqlLiteDb(IOptions<AppSettings> config)
     {
-      var toon = new BaseToon("DareDevil");
-      toon.Traits.Add(Trait.Hero);
-      toon.Traits.Add(Trait.City);
-      toon.Traits.Add(Trait.Bio);
-      toon.Traits.Add(Trait.Brawler);
-      toon.Traits.Add(Trait.Defender);
-      toon.Traits.Add(Trait.MartialArtist);
-      toon.Abilities.Add(new Ability { Type = AbilityType.Basic, Name  = "Strike Without Fear", Level = 1});
-      toon.Abilities.Add(new Ability { Type = AbilityType.Special, Name  = "Throw Baton", Level = 1 });
-      toon.Abilities.Add(new Ability { Type = AbilityType.Ultimate, Name  = "Brawl", Level = 1 });
-      toon.Abilities.Add(new Ability { Type = AbilityType.Passive, Name  = "Enhance Senses", Level = 1 });
-
+      var dareDevil = new DareDevil();
       _config = config;
       var db = _config.Value.Database;
       SeedSqlLiteDb(db);

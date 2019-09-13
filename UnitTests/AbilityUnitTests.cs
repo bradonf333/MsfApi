@@ -1,4 +1,5 @@
-﻿using MsfTeamBuilderAPI.Models.Entities;
+﻿using MsfTeamBuilderAPI.Models;
+using MsfTeamBuilderAPI.Models.Entities;
 using NUnit.Framework;
 
 namespace UnitTests
@@ -8,7 +9,7 @@ namespace UnitTests
     [Test]
     public void Ability_WhenTypeIsUltimate_MaxLevelIsFive()
     {
-      var ability = new Ability {Type = AbilityType.Ultimate};
+      var ability = new Ability { Type = AbilityType.Ultimate };
 
       Assert.That(ability.MaxLevel, Is.EqualTo(5));
     }
@@ -18,7 +19,7 @@ namespace UnitTests
     [TestCase(AbilityType.Basic)]
     public void Ability_WhenTypeIsNotUltimate_MaxLevelIsSeven(AbilityType type)
     {
-      var ability = new Ability {Type = type};
+      var ability = new Ability { Type = type };
 
       Assert.That(ability.MaxLevel, Is.EqualTo(7));
     }
@@ -29,7 +30,7 @@ namespace UnitTests
     [TestCase(AbilityType.Ultimate, 7)]
     public void Ability_WhenLevelIsGreaterThanMaxLevel_WillBeEqualToMaxLevel(AbilityType type, int level)
     {
-      var ability = new Ability {Type = type, Level = level};
+      var ability = new Ability { Type = type, Level = level };
 
       Assert.That(ability.Level, Is.EqualTo(ability.MaxLevel));
     }

@@ -1,4 +1,4 @@
-﻿namespace MsfTeamBuilderAPI.Models.Entities
+﻿namespace MsfTeamBuilderAPI.Models
 {
   public class Ability
   {

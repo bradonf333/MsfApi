@@ -1,10 +1,14 @@
+using System.Security.Cryptography.X509Certificates;
 using FakeItEasy;
+using MsfTeamBuilderAPI.Models.BaseToons;
 using MsfTeamBuilderAPI.Models.Entities;
 using MsfTeamBuilderAPI.Services;
-using MsfTeamBuilderAPI.Services.DataBase;
+using MsfTeamBuilderAPI.Services.Interfaces;
 using NUnit.Framework;
+using System.Linq;
+using MsfTeamBuilderAPI.Models;
 
-namespace Tests
+namespace UnitTests
 {
   public class Tests
   {
@@ -16,10 +20,9 @@ namespace Tests
     [Test]
     public void Test1()
     {
-      var fakeRepo = A.Fake<IRepository<Toon>>();
-      //A.CallTo(() => fakeRepo.Add(A<Toon>._)).MustHaveHappened();
+      var dareDevil = new DareDevil();
+      var basicAbility = dareDevil.Abilities.Where(a => a.Type == AbilityType.Basic);
 
-      var x = new GetToonService(fakeRepo);
       Assert.Pass();
     }
   }
