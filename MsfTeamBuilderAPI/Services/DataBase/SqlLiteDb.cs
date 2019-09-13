@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Data.SQLite;
+using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using MsfTeamBuilderAPI.Models;
@@ -14,11 +15,11 @@ namespace MsfTeamBuilderAPI.Services.DataBase
   {
     private readonly IOptions<AppSettings> _config;
 
-    public SqlLiteDb(IOptions<AppSettings> config )
+    public SqlLiteDb(IOptions<AppSettings> config)
     {
       _config = config;
       var db = _config.Value.Database;
-      SQLiteConnection.CreateFile($"{db}.sqlite");
+      SeedSqlLiteDb(db);
     }
 
     public IEnumerable<Toon> List { get; }
@@ -38,9 +39,75 @@ namespace MsfTeamBuilderAPI.Services.DataBase
       throw new NotImplementedException();
     }
 
-    public Toon FindById(int id)
+    public Toon GetById(int id)
     {
       throw new NotImplementedException();
+    }
+
+    private void SeedSqlLiteDb(string db)
+    {
+      var connection = new SQLiteConnection($"Data Source={db}.sqlite;Version=3;");
+      //TableSeed(connection);
+    }
+
+    private void TableSeed(SQLiteConnection connection)
+    {
+      connection.Open();
+
+      var toonSql =
+        " CREATE TABLE Toons ( " +
+        " 	Name	TEXT NOT NULL, " +
+        " 	Id		INTEGER PRIMARY KEY AUTOINCREMENT, " +
+        " 	Power	INTEGER NOT NULL, " +
+        " 	Level	INTEGER NOT NULL, " +
+        " 	GearId  INTEGER NOT NULL " +
+        " ); ";
+
+      SQLiteCommand toonCommand = new SQLiteCommand(toonSql, connection);
+      toonCommand.ExecuteNonQuery();
+
+      var gearSql = 
+        " CREATE TABLE Gear ( " +
+        " 	Id		INTEGER PRIMARY KEY AUTOINCREMENT, " +
+        " 	Tier	INTEGER NOT NULL, " +
+        " 	Slot1	INTEGER NOT NULL, " +
+        " 	Slot2	INTEGER NOT NULL, " +
+        " 	Slot3	INTEGER NOT NULL, " +
+        " 	Slot4	INTEGER NOT NULL, " +
+        " 	Slot5	INTEGER NOT NULL, " +
+        " 	Slot6	INTEGER NOT NULL " +
+        " ); ";
+
+      SQLiteCommand gearCommand = new SQLiteCommand(gearSql, connection);
+      gearCommand.ExecuteNonQuery();
+
+      var abilitySql = 
+        " CREATE TABLE Abilities ( " +
+        " 	Id			INTEGER PRIMARY KEY AUTOINCREMENT, " +
+        " 	ToonId		INTEGER NOT NULL, " +
+        " 	Type		TEXT NOT NULL, " +
+        " 	Level		INTEGER NOT NULL, " +
+        " 	Description	TEXT NOT NULL " +
+        " ); ";
+
+      SQLiteCommand abilityCommand = new SQLiteCommand(abilitySql, connection);
+      abilityCommand.ExecuteNonQuery();
+
+      var starSql = 
+      " CREATE TABLE StarRank ( " +
+        " 	Id					INTEGER PRIMARY KEY AUTOINCREMENT, " +
+        " 	ToonId				INTEGER NOT NULL, " +
+        " 	Type				TEXT NOT NULL, " +
+        " 	YellowStars			INTEGER NOT NULL, " +
+        " 	RedStars			INTEGER NOT NULL, " +
+        " 	CurrentShards		TEXT NOT NULL, " +
+        " 	ShardsToNextRank	TEXT NOT NULL " +
+        " ); ";
+
+      SQLiteCommand starCommand = new SQLiteCommand(starSql, connection);
+      starCommand.ExecuteNonQuery();
+
+      connection.Close();
     }
   }
 }

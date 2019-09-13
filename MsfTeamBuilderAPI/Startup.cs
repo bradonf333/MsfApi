@@ -11,20 +11,16 @@ using MsfTeamBuilderAPI.Models;
 using MsfTeamBuilderAPI.Models.Entities;
 using MsfTeamBuilderAPI.Services;
 using MsfTeamBuilderAPI.Services.DataBase;
+using MsfTeamBuilderAPI.Services.Interfaces;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace MsfTeamBuilderAPI
 {
   public class Startup
   {
-    public Startup(IHostingEnvironment env)
+    public Startup(IConfiguration configuration)
     {
-      var builder = new ConfigurationBuilder()
-                    .SetBasePath(env.ContentRootPath)
-                    .AddJsonFile("appsettings.json")
-                    .AddJsonFile($"appsettings.{env.EnvironmentName}.json")
-                    .AddEnvironmentVariables();
-      Configuration = builder.Build();
+      Configuration = configuration;
     }
 
     public IConfiguration Configuration { get; }
@@ -41,6 +37,7 @@ namespace MsfTeamBuilderAPI
       IMapper mapper = mappingConfig.CreateMapper();
       services.AddSingleton(mapper);
       services.AddTransient<IRepository<Toon>, SqlLiteDb>();
+      services.AddSingleton<IGetToonService, GetToonService>();
       services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
       // Register the Swagger generator, defining 1 or more Swagger documents
@@ -65,7 +62,13 @@ namespace MsfTeamBuilderAPI
     {
       if (env.IsDevelopment())
       {
+        // Enable middleware to serve generated Swagger as a JSON endpoint.
+        app.UseSwagger();
         app.UseDeveloperExceptionPage();
+        app.UseSwaggerUI(c =>
+        {
+          c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+        });
       }
       else
       {

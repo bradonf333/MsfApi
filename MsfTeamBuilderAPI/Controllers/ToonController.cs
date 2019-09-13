@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
+using MsfTeamBuilderAPI.Models.Entities;
 using MsfTeamBuilderAPI.Services.Interfaces;
 
 namespace MsfTeamBuilderAPI.Controllers
@@ -11,6 +13,13 @@ namespace MsfTeamBuilderAPI.Controllers
     public ToonController(IGetToonService getToonService)
     {
       _getToonService = getToonService;
+    }
+
+    [HttpGet("toons")]
+    public IEnumerable<Toon> GetAllToons()
+    {
+      var result = _getToonService.GetAllToons();
+      return result;
     }
   }
 }

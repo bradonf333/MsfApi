@@ -10,6 +10,5 @@ namespace MsfTeamBuilderAPI.Models.Entities
     public int CurrentLevel { get; set; }
     public int Experience { get; set; }
     public int ExperienceToNextLevel { get; set; }
-
   }
 }
