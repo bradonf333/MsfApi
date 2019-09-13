@@ -10,5 +10,12 @@ namespace MsfTeamBuilderAPI.Models.Entities
     public int Power { get; set; }
     public int Level { get; set; }
     public Gear Gear { get; set; }
+
+    public Toon(string name) : base(name)
+    {
+      
+    }
   }
+
+
 }

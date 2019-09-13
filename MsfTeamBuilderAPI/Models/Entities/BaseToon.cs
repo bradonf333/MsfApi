@@ -9,13 +9,14 @@ namespace MsfTeamBuilderAPI.Models.Entities
   {
     public string Name { get; set; }
     public List<Ability> Abilities { get; set; }
-    public List<Trait> Traits { get; set; }
+    public List<string> Traits { get; set; }
     public StarRank StarRank { get; set; }
 
-    public BaseToon()
+    public BaseToon(string name)
     {
+      Name = name;
       Abilities = new List<Ability>();
-      Traits = new List<Trait>();
+      Traits = new List<string>();
     }
   }
 }

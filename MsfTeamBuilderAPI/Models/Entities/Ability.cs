@@ -1,15 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace MsfTeamBuilderAPI.Models.Entities
+﻿namespace MsfTeamBuilderAPI.Models.Entities
 {
   public class Ability
   {
-    public AbilityType Type { get; set; }
-    public int Level { get; set; }
+    private AbilityType _type;
+    public AbilityType Type
+    {
+      get => _type;
+      set
+      {
+        _type = value; 
+        MaxLevel = value == AbilityType.Ultimate ? 5 : 7;
+      }
+    }
+    public string Name { get; set; }
+    private int _level;
+    public int Level
+    {
+      get { return _level;}
+      set
+      {
+        if (value > MaxLevel)
+        {
+          _level = MaxLevel;
+        }
+      }
+    }
     public string Description { get; set; }
+    public int MaxLevel { get; private set;}
   }
 
   public enum AbilityType

@@ -17,6 +17,18 @@ namespace MsfTeamBuilderAPI.Services.DataBase
 
     public SqlLiteDb(IOptions<AppSettings> config)
     {
+      var toon = new BaseToon("DareDevil");
+      toon.Traits.Add(Trait.Hero);
+      toon.Traits.Add(Trait.City);
+      toon.Traits.Add(Trait.Bio);
+      toon.Traits.Add(Trait.Brawler);
+      toon.Traits.Add(Trait.Defender);
+      toon.Traits.Add(Trait.MartialArtist);
+      toon.Abilities.Add(new Ability { Type = AbilityType.Basic, Name  = "Strike Without Fear", Level = 1});
+      toon.Abilities.Add(new Ability { Type = AbilityType.Special, Name  = "Throw Baton", Level = 1 });
+      toon.Abilities.Add(new Ability { Type = AbilityType.Ultimate, Name  = "Brawl", Level = 1 });
+      toon.Abilities.Add(new Ability { Type = AbilityType.Passive, Name  = "Enhance Senses", Level = 1 });
+
       _config = config;
       var db = _config.Value.Database;
       SeedSqlLiteDb(db);
@@ -55,10 +67,9 @@ namespace MsfTeamBuilderAPI.Services.DataBase
       connection.Open();
 
       var toonSql =
-        " CREATE TABLE Toons ( " +
+        " CREATE TABLE BaseToons ( " +
         " 	Name	TEXT NOT NULL, " +
         " 	Id		INTEGER PRIMARY KEY AUTOINCREMENT, " +
-        " 	Power	INTEGER NOT NULL, " +
         " 	Level	INTEGER NOT NULL, " +
         " 	GearId  INTEGER NOT NULL " +
         " ); ";
@@ -66,7 +77,7 @@ namespace MsfTeamBuilderAPI.Services.DataBase
       SQLiteCommand toonCommand = new SQLiteCommand(toonSql, connection);
       toonCommand.ExecuteNonQuery();
 
-      var gearSql = 
+      var gearSql =
         " CREATE TABLE Gear ( " +
         " 	Id		INTEGER PRIMARY KEY AUTOINCREMENT, " +
         " 	Tier	INTEGER NOT NULL, " +
@@ -81,7 +92,7 @@ namespace MsfTeamBuilderAPI.Services.DataBase
       SQLiteCommand gearCommand = new SQLiteCommand(gearSql, connection);
       gearCommand.ExecuteNonQuery();
 
-      var abilitySql = 
+      var abilitySql =
         " CREATE TABLE Abilities ( " +
         " 	Id			INTEGER PRIMARY KEY AUTOINCREMENT, " +
         " 	ToonId		INTEGER NOT NULL, " +
@@ -93,7 +104,7 @@ namespace MsfTeamBuilderAPI.Services.DataBase
       SQLiteCommand abilityCommand = new SQLiteCommand(abilitySql, connection);
       abilityCommand.ExecuteNonQuery();
 
-      var starSql = 
+      var starSql =
       " CREATE TABLE StarRank ( " +
         " 	Id					INTEGER PRIMARY KEY AUTOINCREMENT, " +
         " 	ToonId				INTEGER NOT NULL, " +
