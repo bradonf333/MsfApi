@@ -16,12 +16,10 @@ namespace MsfTeamBuilderAPI.Models.BaseToons
 
     private StarRank PopulateStarRank()
     {
-      return new StarRank
+      return new StarRank(2)
       {
         CurrentShards = 0,
         RedStars = 0,
-        ShardsToNextRank = 55,
-        YellowStars = 2
       };
     }
 
