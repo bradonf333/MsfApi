@@ -25,5 +25,6 @@ namespace MsfTeamBuilderAPI.Models.Entities
     public static string Minion => "Minion";
     public static string Skill => "Skill";
     public static string Blaster => "Blaster";
+    public static string Guardian => "Guardian";
   }
 }

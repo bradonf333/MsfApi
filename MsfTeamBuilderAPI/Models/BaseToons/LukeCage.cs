@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace MsfTeamBuilderAPI.Models.BaseToons
 {
-  public class DareDevil : BaseToon
+  public class LukeCage : BaseToon
   {
-    public DareDevil() : base("DareDevil")
+    public LukeCage() : base("LukeCage")
     {
+      StarRank = PopulateStarRank();
       Abilities = PopulateAbilities();
       Traits = PopulateTraits();
-      StarRank = PopulateStarRank();
     }
 
     #region StarRank
@@ -20,8 +20,8 @@ namespace MsfTeamBuilderAPI.Models.BaseToons
       {
         CurrentShards = 0,
         RedStars = 0,
-        ShardsToNextRank = 80,
-        YellowStars = 3
+        ShardsToNextRank = 55,
+        YellowStars = 2
       };
     }
 
@@ -36,16 +36,16 @@ namespace MsfTeamBuilderAPI.Models.BaseToons
         new Ability
         {
           Type = AbilityType.Basic,
-          Name  = "Strike Without Fear",
+          Name  = "Beat Up",
           Level = 1,
-          Description = "Attack primary target for 90% damage. 30% chance to gain a Bonus attack for 80% damage. If target is VILLAIN, chance to gain a Bonus attack is 60%."
+          Description = "30% chance to apply Assist Now to a Random Hero Ally. If that ally is a Defender they also gain Offense Up. Attack primary target for 330% damage."
         },
         new Ability
         {
           Type = AbilityType.Special,
-          Name  = "Throw Baton",
+          Name  = "Bring It On!",
           Level = 1,
-          Description = "Attack primary target for 80% damage + 50% chance to Chain to 1 target within 2 spaces of previous target for 70% damage. Dodge breaks the chain. Gain Counter."
+          Description = "Gain Taunt for 2 turns + 2 Regeneration. Clear all negative effect from self. Apply Regeneration to all Defender Allies."
         },
         new Ability
         {
@@ -57,9 +57,9 @@ namespace MsfTeamBuilderAPI.Models.BaseToons
         new Ability 
         {
           Type = AbilityType.Passive, 
-          Name  = "Enhance Senses", 
+          Name  = "Unbreakable", 
           Level = 1, 
-          Description = "Self and Defender allies gain +5% Speed. This is applied after any character has taken an action. \nGain +5% Dodge chance per Defender ally."
+          Description = "Gain Defense Up for 2 turns + Deathproof. Apply Defense Up to all allies for 2 turns. Generate 1-3 ability energy for random ally."
         }
       };
     }
@@ -75,9 +75,8 @@ namespace MsfTeamBuilderAPI.Models.BaseToons
         Trait.Hero,
         Trait.City,
         Trait.Bio,
-        Trait.Brawler,
-        Trait.Defender,
-        Trait.MartialArtist
+        Trait.Protector,
+        Trait.Defender
       };
     }
 

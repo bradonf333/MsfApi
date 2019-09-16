@@ -23,6 +23,10 @@
         {
           _level = MaxLevel;
         }
+        else
+        {
+          _level = value;
+        }
       }
     }
     public string Description { get; set; }

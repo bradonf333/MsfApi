@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace MsfTeamBuilderAPI.Models.BaseToons
 {
-  public class DareDevil : BaseToon
+  public class RocketRaccoon : BaseToon
   {
-    public DareDevil() : base("DareDevil")
+    public RocketRaccoon() : base("Rocket Raccoon")
     {
+      StarRank = PopulateStarRank();
       Abilities = PopulateAbilities();
       Traits = PopulateTraits();
-      StarRank = PopulateStarRank();
     }
 
     #region StarRank
@@ -36,30 +36,30 @@ namespace MsfTeamBuilderAPI.Models.BaseToons
         new Ability
         {
           Type = AbilityType.Basic,
-          Name  = "Strike Without Fear",
+          Name  = "Rocket Rifle",
           Level = 1,
-          Description = "Attack primary target for 90% damage. 30% chance to gain a Bonus attack for 80% damage. If target is VILLAIN, chance to gain a Bonus attack is 60%."
+          Description = "Attack primary target for 180% damage +15% Crit chance. Attack all adjacent targets for 150% damage +15% Crit chance."
         },
         new Ability
         {
           Type = AbilityType.Special,
-          Name  = "Throw Baton",
+          Name  = "Pretty Good Plan",
           Level = 1,
-          Description = "Attack primary target for 80% damage + 50% chance to Chain to 1 target within 2 spaces of previous target for 70% damage. Dodge breaks the chain. Gain Counter."
+          Description = "Attack primary target for 340% damage. If Groot is your ally, gain an Assist from Groot and apply Taunt to Groot. 70% chance to gain an Assist from a random ally."
         },
         new Ability
         {
           Type = AbilityType.Ultimate,
-          Name  = "Brawl",
+          Name  = "Maximum Damage",
           Level = 1,
-          Description = "Attack primary target for 170% damage + Chain to 2 adjacent targets for 120% damage. Counterattack breaks the chain."
+          Description = "Attack all enemies for 300% damage. If Groot is ally, attack all enemies for 360% damage instead. Gain 2 Counter."
         },
         new Ability 
         {
           Type = AbilityType.Passive, 
-          Name  = "Enhance Senses", 
+          Name  = "Expert Tinker", 
           Level = 1, 
-          Description = "Self and Defender allies gain +5% Speed. This is applied after any character has taken an action. \nGain +5% Dodge chance per Defender ally."
+          Description = "Tech allies gain 5% damage. On Turn, 40% chance to apply a positive effect to 2 random allies."
         }
       };
     }
@@ -73,11 +73,10 @@ namespace MsfTeamBuilderAPI.Models.BaseToons
       return new List<string>
       {
         Trait.Hero,
-        Trait.City,
-        Trait.Bio,
-        Trait.Brawler,
-        Trait.Defender,
-        Trait.MartialArtist
+        Trait.Cosmic,
+        Trait.Tech,
+        Trait.Blaster,
+        Trait.Guardian
       };
     }
 
