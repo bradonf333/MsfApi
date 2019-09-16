@@ -21,7 +21,7 @@ namespace UnitTests
     public void Test1()
     {
       var dareDevil = new DareDevil();
-      var basicAbility = dareDevil.Abilities.Where(a => a.Type == AbilityType.Basic).FirstOrDefault();
+      var basicAbility = dareDevil.Abilities.FirstOrDefault(a => a.Type == AbilityType.Basic);
 
       Assert.Pass();
     }

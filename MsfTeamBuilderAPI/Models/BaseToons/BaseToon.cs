@@ -5,7 +5,6 @@ namespace MsfTeamBuilderAPI.Models.BaseToons
 {
   public class BaseToon : IToon
   {
-    public int Id { get; set; }
     public string Name { get; set; }
     public List<Ability> Abilities { get; set; }
     public List<string> Traits { get; set; }

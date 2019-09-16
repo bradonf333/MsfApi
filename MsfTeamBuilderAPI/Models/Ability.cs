@@ -19,14 +19,7 @@
       get { return _level;}
       set
       {
-        if (value > MaxLevel)
-        {
-          _level = MaxLevel;
-        }
-        else
-        {
-          _level = value;
-        }
+        _level = value > MaxLevel ? MaxLevel : value;
       }
     }
     public string Description { get; set; }

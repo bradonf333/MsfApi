@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using MsfTeamBuilderAPI.Models.Entities;
+﻿using System.Collections.Generic;
 
 namespace MsfTeamBuilderAPI.Services.DataBase
 {
@@ -10,7 +6,7 @@ namespace MsfTeamBuilderAPI.Services.DataBase
   /// TODO: Basically Need one of these for each object. Team, Toon, etc..
   /// </summary>
   /// <typeparam name="T"></typeparam>
-  public interface IDbInterface<T> where T: BaseEntity
+  public interface IDbInterface<T> where T: class
   {
     IEnumerable<T> List { get; }
     void Add(T entity);
